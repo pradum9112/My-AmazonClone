@@ -1,19 +1,16 @@
-import { React, useState } from 'react'
+import { React, useState } from "react";
 import "./signup_signin.css";
-import { NavLink } from 'react-router-dom';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-
-
+import { NavLink, Navigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const SignUp = () => {
-
   const [udata, setUdata] = useState({
     fname: "",
     email: "",
     mobile: "",
     password: "",
-    cpassword: ""
+    cpassword: "",
   });
 
   // console.log(udata);
@@ -24,10 +21,12 @@ const SignUp = () => {
     setUdata(() => {
       return {
         ...udata,
-        [name]: value
-      }
-    })
-  }
+        [name]: value,
+      };
+    });
+  };
+
+  const navigate = Navigate();
 
   const senddata = async (e) => {
     e.preventDefault();
@@ -37,11 +36,15 @@ const SignUp = () => {
     const res = await fetch("/register", {
       method: "POST",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        fname, email, mobile, password, cpassword
-      })
+        fname,
+        email,
+        mobile,
+        password,
+        cpassword,
+      }),
     });
 
     const data = await res.json();
@@ -50,12 +53,20 @@ const SignUp = () => {
     if (res.status === 422 || !data) {
       toast.error("Invalid Details😞!", { position: "top-center" });
     } else {
-      setUdata({ ...udata, fname: "", email: "", mobile: "", password: "", cpassword: "" });
-      toast.success("Registration Successfully done🤩!", { position: "top-center" });
+      setUdata({
+        ...udata,
+        fname: "",
+        email: "",
+        mobile: "",
+        password: "",
+        cpassword: "",
+      });
+      toast.success("Registration Successfully done🤩!", {
+        position: "top-center",
+      });
+      navigate("/login");
     }
-
-  }
-
+  };
 
   return (
     <div>
@@ -65,50 +76,62 @@ const SignUp = () => {
             <img src="./blacklogoamazon.png" alt="amazonlogo" />
           </div>
           <div className="sign_form">
-            <form method='POST'>
+            <form method="POST">
               <h1>sign-Up</h1>
               <div className="form_data">
                 <label htmlFor="fname">Your name</label>
-                <input type="text"
+                <input
+                  type="text"
                   onChange={adddata}
                   value={udata.fname}
                   name="fname"
-                  id="fname" />
+                  id="fname"
+                />
               </div>
               <div className="form_data">
                 <label htmlFor="email">Email</label>
-                <input type="text"
+                <input
+                  type="text"
                   onChange={adddata}
                   value={udata.email}
                   name="email"
-                  id="email" />
+                  id="email"
+                />
               </div>
               <div className="form_data">
                 <label htmlFor="number">Mobile</label>
-                <input type="text"
+                <input
+                  type="text"
                   onChange={adddata}
                   value={udata.mobile}
                   name="mobile"
-                  id="mobile" />
+                  id="mobile"
+                />
               </div>
               <div className="form_data">
                 <label htmlFor="">Password</label>
-                <input type="password"
+                <input
+                  type="password"
                   onChange={adddata}
                   value={udata.password}
                   name="password"
                   id="password"
-                  placeholder='At least 6 character' />
+                  placeholder="At least 6 character"
+                />
               </div>
               <div className="form_data">
                 <label htmlFor="cpassword">Password Again</label>
-                <input type="password"
+                <input
+                  type="password"
                   onChange={adddata}
                   value={udata.cpassword}
                   name="cpassword"
-                  id="password" />
+                  id="password"
+                />
               </div>
-              <button className="signin_btn" onClick={senddata}>Continue</button>
+              <button className="signin_btn" onClick={senddata}>
+                Continue
+              </button>
               <div className="signin_info">
                 <p>Already have a account?</p>
                 <NavLink to="/login"> Sign in</NavLink>
@@ -119,7 +142,7 @@ const SignUp = () => {
         </div>
       </section>
     </div>
-  )
-}
+  );
+};
 
-export default SignUp
+export default SignUp;
