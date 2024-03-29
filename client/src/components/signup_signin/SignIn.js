@@ -13,7 +13,7 @@ const SignIn = () => {
 
   console.log(logdata);
 
-  const navigate = Navigate();
+  const navigate = useNavigate();
   const { account, setAccount } = useContext(Logincontext);
 
   const adddata = (e) => {

@@ -1,6 +1,6 @@
 import { React, useState } from "react";
 import "./signup_signin.css";
-import { NavLink, Navigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -26,7 +26,7 @@ const SignUp = () => {
     });
   };
 
-  const navigate = Navigate();
+  const navigate = useNavigate();
 
   const senddata = async (e) => {
     e.preventDefault();
@@ -134,7 +134,7 @@ const SignUp = () => {
               </button>
               <div className="signin_info">
                 <p>Already have a account?</p>
-                <NavLink to="/login"> Sign in</NavLink>
+                <NavLink to="/login">Sign in</NavLink>
               </div>
             </form>
           </div>
