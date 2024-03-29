@@ -61,10 +61,10 @@ const SignUp = () => {
         password: "",
         cpassword: "",
       });
+      navigate("/login");
       toast.success("Registration Successfully done🤩!", {
         position: "top-center",
       });
-      navigate("/login");
     }
   };
 

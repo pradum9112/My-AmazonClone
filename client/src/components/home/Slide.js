@@ -1,11 +1,10 @@
-import React from 'react';
+import React from "react";
 import "./Slide.css";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { Divider } from "@mui/material";
-import { NavLink } from 'react-router-dom';
+import { NavLink } from "react-router-dom";
 // import { products } from './Productdata';
-
 
 const responsive = {
   desktop: {
@@ -18,18 +17,16 @@ const responsive = {
   },
   mobile: {
     breakpoint: { max: 464, min: 0 },
-    items: 1,   
-  }
+    items: 1,
+  },
 };
 
-
-const Slide = ({ tittle, products }) => {
+const Slide = ({ title, products }) => {
   return (
-
-    <div className='products_section'>
-      <div className='products_deal'>
-        <h3>{tittle}</h3>
-        <button className='view_btn'>View All</button>
+    <div className="products_section">
+      <div className="products_deal">
+        <h3>{title}</h3>
+        <button className="view_btn">View All</button>
       </div>
       <Divider />
 
@@ -48,27 +45,23 @@ const Slide = ({ tittle, products }) => {
         itemClass="carousel-item-padding-40-px"
         containerClass="carousel-container"
       >
-        { 
-          products.map((e) => {
-            return (
-              <NavLink to={`/getproductsone/${e.id}`}>
-                <div className='products_items'>
-                  <div className='product_img'>
-                    <img src={e.url} alt="productitem" />
-                  </div>
-                  <p className='products_name'>{e.title.shortTitle}</p>
-                  <p className='products_offer'>{e.discount}</p>
-                  <p className='products_explore'>{e.tagline}</p>
+        {products?.map((e) => {
+          return (
+            <NavLink to={`/getproductsone/${e.id}`}>
+              <div className="products_items">
+                <div className="product_img">
+                  <img src={e.url} alt="productitem" />
                 </div>
-              </NavLink>
-
-            )
-          })
-        }
+                <p className="products_name">{e.title.shortTitle}</p>
+                <p className="products_offer">{e.discount}</p>
+                <p className="products_explore">{e.tagline}</p>
+              </div>
+            </NavLink>
+          );
+        })}
       </Carousel>
-
     </div>
   );
-}
+};
 
 export default Slide;

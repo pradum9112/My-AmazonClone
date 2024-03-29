@@ -20,6 +20,7 @@
     "mongodb": "^5.6.0",
     "mongoose": "^7.2.2",
     "nodemon": "^2.0.22",
+    "react-router-dom": "^6.22.3",
     "redux-devtools-extension": "^2.13.9",
     "validator": "^13.9.0"
   }

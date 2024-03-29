@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import "./signup_signin.css";
-import { NavLink, Navigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Logincontext } from "../context/Contextprovider";
@@ -53,11 +53,11 @@ const SignIn = () => {
     } else {
       console.log("data valid");
       setAccount(data);
+      navigate("/");
       toast.success("Login Successfully done ☺!", {
         position: "top-center",
       });
       setData({ ...logdata, email: "", password: "" });
-      navigate("/");
     }
   };
 
