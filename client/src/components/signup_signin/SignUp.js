@@ -33,36 +33,42 @@ const SignUp = () => {
 
     const { fname, email, mobile, password, cpassword } = udata;
 
-    const res = await fetch("/register", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        fname,
-        email,
-        mobile,
-        password,
-        cpassword,
-      }),
-    });
-
-    const data = await res.json();
-    // console.log(data);
-
-    if (res.status === 422 || !data) {
-      toast.error("Invalid Details😞!", { position: "top-center" });
-    } else {
-      setUdata({
-        ...udata,
-        fname: "",
-        email: "",
-        mobile: "",
-        password: "",
-        cpassword: "",
+    try {
+      const res = await fetch("/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          fname,
+          email,
+          mobile,
+          password,
+          cpassword,
+        }),
       });
-      navigate("/login");
-      toast.success("Registration Successfully done🤩!", {
+
+      const data = await res.json();
+
+      if (res.status === 422 || !data) {
+        toast.error("Invalid Details😞!", { position: "top-center" });
+      } else {
+        setUdata({
+          ...udata,
+          fname: "",
+          email: "",
+          mobile: "",
+          password: "",
+          cpassword: "",
+        });
+        navigate("/login");
+        toast.success("Registration Successfully done🤩!", {
+          position: "top-center",
+        });
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      toast.error("An error occurred while processing your request", {
         position: "top-center",
       });
     }

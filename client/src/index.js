@@ -9,8 +9,6 @@ import ContextProvider from "./components/context/Contextprovider";
 
 ReactDOM.render(
   <ContextProvider>
-    {" "}
-    {/* Corrected the casing of ContextProvider */}
     <Provider store={store}>
       <BrowserRouter>
         <App />
