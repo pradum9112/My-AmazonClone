@@ -46,18 +46,18 @@ const SignIn = () => {
     console.log(data);
 
     if (res.status === 400 || !data) {
-      console.log("I nvalid details");
+      console.log("Invalid details");
       toast.warn("Invalid Details!", {
         position: "top-center",
       });
     } else {
       console.log("data valid");
       setAccount(data);
-      navigate("/");
       toast.success("Login Successfully done ☺!", {
         position: "top-center",
       });
       setData({ ...logdata, email: "", password: "" });
+      navigate("/");
     }
   };
 

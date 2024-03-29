@@ -15,6 +15,7 @@ function App() {
   const [data, setData] = useState(false);
 
   useEffect(() => {
+    // Simulating data loading with a delay of 3 seconds
     setTimeout(() => {
       setData(true);
     }, 3000);
@@ -36,6 +37,7 @@ function App() {
           <Footer />
         </>
       ) : (
+        // Displaying a loading spinner while data is being fetched
         <div className="circle">
           <CircularProgress />
           <h2> Loading....</h2>
